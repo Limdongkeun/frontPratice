@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+</head>
+<body>
+<div class="container">
+    <div>
+        이름 : <input type="text" id="name" value="">
+    </div>
+    <div>
+        지역 : <select id="city" onchange="regionChange()">
+        <option value="seoul" selected>서울</option>
+        <option value="jeju">제주</option>
+    </select>
+    </div>
+    <div> 동네 :
+        <select id="region_seoul">
+            <option value="강남">강남구</option>
+            <option value="서초">서초구</option>
+        </select
+        ><select id="region_jeju" style="display: none;">
+            <option value="제주">제주시</option>
+            <option value="서귀포">서귀포</option>
+        </select>
+    </div>
+    <button type="button" onclick="regist()">등록</button>
+
+</div>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
+        integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK"
+        crossorigin="anonymous"></script>
+<script>
+    function regist() {
+        // 가장 기본적인 형태의 javascript
+        // document.getElementById("name").value;
+        // document.getElementById("city").value;
+
+        //jquery
+        alert($("#name").val());
+        alert($("#city").val());
+        let selectedRegion = $(`#city`).val() === "seoul"
+            ? $("#region_seoul").val()
+            : $("#region_jeju").val();
+
+        alert(selectedRegion);
+
+        let obj = {
+            name: $(`#name`).val(),
+            city: $(`#city`).val(),
+            region: selectedRegion
+        };
+        console.log(obj);
+    }
+
+    function regionChange() {
+        let city = $("#city").val();
+        if (city === "seoul") {
+            $("#region_jeju").hide();
+            $("#region_seoul").show();
+        } else {
+            $("#region_jeju").show();
+            $("#region_seoul").hide();
+        }
+    }
+</script>
+</body>
+</html>
